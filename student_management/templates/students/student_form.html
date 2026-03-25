@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="{{ student.name|default:'' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="number" class="form-control" id="age" name="age" value="{{ student.age|default:'' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="course" class="form-label">Course</label>
+        <input type="text" class="form-control" id="course" name="course" value="{{ student.course|default:'' }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'student_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
